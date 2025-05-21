@@ -46,5 +46,54 @@ title.style.padding="5px";
 title.style.borderRadius="15px";
 title.style.textAlign="center";
 title.style.color="black";
-title.innerText="Hello, hey how are you ?..";
+// title.innerText="Hello, hey how are you ?..";
 //title.innerHTML='<h2>Nice to meet you...</h2>';
+
+
+// querySelector
+// document.querySelector('#title')
+// <h1 id=​"title" class=​"heading" style=​"background-color:​ red;​ padding:​ 5px;​ border-radius:​ 15px;​ text-align:​ center;​ color:​ black;​">​Hello, hey how are you ?..​</h1>​
+// document.querySelector('class')
+// null
+// document.querySelector('.heading')
+// <h1 id=​"title" class=​"heading" style=​"background-color:​ red;​ padding:​ 5px;​ border-radius:​ 15px;​ text-align:​ center;​ color:​ black;​">​Hello, hey how are you ?..​</h1>​
+
+// document.querySelector('h2')
+// <h2>​Lorem ipsum dolor sit amet.​</h2>​
+// document.querySelector('ul')
+// <ul>​…​</ul>​
+
+// document.querySelector('li')
+// <li>​…​</li>​::marker​"one"</li>​
+
+
+const turnwhit = document.querySelector('li')
+
+turnwhit.style.backgroundColor="white";
+
+turnwhit.style.color="green"
+
+turnwhit.style.padding="10px"
+
+turnwhit.innerText="Saurav"
+
+const tempLiList = document.querySelectorAll('li');// return nodelist
+//tempLiList.style.color='darkred'; give error 
+//tempLiList[0].style.color='darkred';
+tempLiList.forEach(function(l){
+    l.style.textAlign='center';
+    l.style.color='yellow';
+})
+
+
+// converting  HTMLCOLLECTION into Array
+const tempClassList = document.getElementsByClassName('list-item')// get htmlcollection
+const convertedArray=Array.from(tempClassList)// converting htmlcollection into array
+convertedArray.forEach(function(li){
+    li.style.color='orange';
+})
+convertedArray.map((li)=>li.style.backgroundColor="pink")
+convertedArray.map((li)=>li.style.margin="5px")
+convertedArray.map((li)=>li.style.padding="25px")
+
+
