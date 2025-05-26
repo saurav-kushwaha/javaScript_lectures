@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aync in javaScript</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    
+</body>
+<script>
+    const sayHii = function(str){
+        console.log(str, Date.now());
+    }
+   const clerInerval = setInterval(sayHii, 1000, 'hii');// takes third parameter also
+    //clearInterval(clerInerval);
+    // setInterval is used to call a function repeatedly with a fixed time interval
+
+    document.querySelector("#start").addEventListener("click", function(){
+        setInterval(sayHii, 1000, 'hii');
+    });
+    document.querySelector("#stop").addEventListener("click", function(){
+        clearInterval(clerInerval);
+        console.log("Interval cleared");
+    });
+</script>
+</html>

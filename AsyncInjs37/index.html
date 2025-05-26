@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async In javaScript</title>
+</head>
+<body>
+    <h1>Async in javaScript</h1>
+    <button id="stop">Stop</button>
+    
+</body>
+<script>
+    const sayHii = function(){
+        console.log("Hii");
+    }
+
+    const changeText = function(){
+        document.querySelector("h1")
+        .innerHTML = "Welcome  from javaScript";
+    }
+    //setTimeout(sayHii, 2000);
+    const clearText = setTimeout(changeText, 2000);
+
+    // not good pratice to use clearTimeout
+    //clearTimeout(clearText);
+    document.querySelector("#stop").addEventListener("click", function(){
+        clearTimeout(clearText);
+        console.log("Timeout cleared");
+    });
+    
+    
+
+</script>
+</html>
