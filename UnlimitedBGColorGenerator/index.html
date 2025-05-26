@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Background Color Generator</title>
+    <style>
+        h1{
+    
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+   
+    /* margin-right: 500px; */
+    background-color: aquamarine;
+    border-radius: 25px; 
+    
+}
+div{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    
+}
+#start{
+    margin-top: 15px;
+    height: 40px;
+    width: 100px;
+    background-color: greenyellow;
+    border-radius: 25px; 
+    border: none;
+    cursor: pointer;
+}
+#stop{
+    margin-top: 15px;
+    height: 40px;
+    width: 100px;
+    background-color: red;
+    border-radius: 25px; 
+    border: none;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <h1>Unlimited Background Color Generator</h1>
+    <div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    </div>
+
+</body>
+<script>
+    // generate random color
+    function generateRandomColor(){
+        const hex = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i<6; i++){
+            color += hex[Math.floor(Math.random()*16)];
+        }
+        return color;
+    }
+     let intervalId;
+     const startChangingColor = function(){
+        if(intervalId == null){
+            // if intervalId is null, it means the interval is not running
+            // so we start the interval
+           intervalId = setInterval(() => {
+                document.body.style.backgroundColor = generateRandomColor();
+            }, 1000);
+            console.log(intervalId);
+
+        }
+       
+    }
+    const stopChangingColor = function(){
+        clearInterval(intervalId);
+        intervalId = null;
+        console.log(intervalId);
+
+    }
+    document.querySelector('#stop').addEventListener('click', stopChangingColor);
+    // start changing color when the start button is clicked
+    document.querySelector('#start').addEventListener('click', startChangingColor);
+
+   
+
+</script>
+</html>
