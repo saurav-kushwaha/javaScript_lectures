@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events in javaScript</title>
+</head>
+
+ <body style="background-color: #414141; color: aliceblue;">
+     <h2>Amazing image</h2>
+       <div >
+           <ul id="images">
+               <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+               <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+               <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+               <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+               <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+               <li><a style="color:blue;" href="https://google.com" id="google">Google</a></li>
+          </ul>
+        </div>
+
+
+    
+   </body>
+   <script>
+    // not recommended to use inline event handlers like this
+    // document.getElementById('owl').onclick = function() {
+    //     alert('You clicked on the owl image!');
+    // };
+    // Using addEventListener for better practice
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //    // alert('You clicked on the owl image!');
+    //    console.log(e);
+    // },false);
+
+    // Event propegation
+    // 1. event bubbling -- false -- flows from child to parent
+    /*
+    document.getElementById('images').addEventListener('click', function(e) {
+        console.log('clicked inside the ul element');
+       
+    },false);
+
+    document.getElementById('owl').addEventListener('click', function(e) {
+       
+       console.log('clicked on the owl image');
+        e.stopPropagation(); // stops the event from bubbling up to the parent
+    },false);
+
+    // 2. event capturing -- true -- flows from parent to child
+    document.getElementById('images').addEventListener('click', function(e) {
+        console.log('clicked inside the ul element');
+       
+    },true);
+    document.getElementById('owl').addEventListener('click', function(e) {
+       
+       console.log('clicked on the owl image');
+    },true);
+
+
+    // preventing default action
+    document.getElementById('google').addEventListener('click', function(e) {
+        e.preventDefault(); // prevents the default action of the link
+        e.stopImmediatePropagation(); // stops the event from bubbling up to the parent
+        console.log('You clicked on the Google link, but the default action is prevented.');
+    },false);*/
+
+
+    // Removing an image on clicking on it
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        
+        // Check if the clicked element is an image
+        if(e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode;
+            //console.log(removeIt);
+            removeIt.remove();
+        } 
+        //  Second way to remove an image
+        //removeIt.parentNode.removeChild(removeIt);
+},false)
+
+   </script>
+</html>
