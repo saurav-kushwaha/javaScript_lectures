@@ -20,6 +20,9 @@
         padding: 2px 16px;
       }
       img{
+        border-radius: 5px 5px 0 0;
+        height: 50%;
+        width: 50%;
 
       }
     </style>
@@ -51,15 +54,21 @@
         //console.log(xhr.readyState);
        
         if (xhr.readyState === 4) { // DONE
-            // if (xhr.status === 200) { // OK
+            if (xhr.status === 200) { // OK
             // const response = JSON.parse(xhr.responseText);
             // console.log(response.followers);
 
-            const res = JSON.parse(this.responseText);
-            console.log(res.followers);
-            // } else {
-            //     console.error('Error fetching data:', xhr.status, xhr.statusText);
-            // }
+            // const res = JSON.parse(this.responseText);
+            // console.log(res.followers);
+            const res = JSON.parse(xhr.responseText);
+            document.querySelector('.card img').setAttribute('src',`${res.avatar_url}`);
+            document.querySelector('.container h4').innerHTML = `Name : ${res.name}`;
+            document.querySelector('.container p').innerHTML = `Followers ${res.followers}`;
+            document.querySelector('.container h5').innerHTML =`Blog URL :${res.blog} <br><br><br> BIO : ${res.bio}`
+            } else {
+                console.error('Error fetching data:', xhr.status, xhr.statusText);
+            }
+           
         }
        
     };
@@ -67,15 +76,15 @@
 
 
     // display the data in the card
-    xhr.onload = function(){
-        if (xhr.status === 200){
-            const res = JSON.parse(xhr.responseText);
-            document.querySelector('.card img').setAttribute('src',`${res.avatar_url}`);
-            document.querySelector('.container h4').innerHTML = `Name : ${res.name}`;
-            document.querySelector('.container p').innerHTML = `Followers ${res.followers}`;
-            document.querySelector('.container h5').innerHTML =`Blog URL :${res.blog} <br> BIO : ${res.bio}`
-        }
-    }
+    // xhr.onload = function(){
+    //     if (xhr.status === 200){
+    //         const res = JSON.parse(xhr.responseText);
+    //         document.querySelector('.card img').setAttribute('src',`${res.avatar_url}`);
+    //         document.querySelector('.container h4').innerHTML = `Name : ${res.name}`;
+    //         document.querySelector('.container p').innerHTML = `Followers ${res.followers}`;
+    //         document.querySelector('.container h5').innerHTML =`Blog URL :${res.blog} <br><br><br> BIO : ${res.bio}`
+    //     }
+    // }
 
 </script>
 </html>
