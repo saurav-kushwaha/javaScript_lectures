@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request In JavaScript</title>
+    <style>
+        body{
+            background-color: #212121;  
+            color: beige;
+        }
+        .card {
+        /* Add shadows to create the "card" effect */
+        width: 500px;
+        height: 600px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+      }
+    .container {
+        padding: 2px 16px;
+      }
+    </style>
+</head>
+<body>
+   
+<!-- 0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.-->
+
+<div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4></h4>
+          <p></p>
+          <h5></h5>
+        </div>
+      </div>
+    
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+   // console.log(xhr.readyState);
+    xhr.onreadystatechange = function() {
+        //console.log(xhr.readyState);
+       
+        if (xhr.readyState === 4) { // DONE
+            // if (xhr.status === 200) { // OK
+            // const response = JSON.parse(xhr.responseText);
+            // console.log(response.followers);
+
+            const res = JSON.parse(this.responseText);
+            console.log(res.followers);
+            // } else {
+            //     console.error('Error fetching data:', xhr.status, xhr.statusText);
+            // }
+        }
+       
+    };
+    xhr.send();
+
+
+    // display the data in the card
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            const res = JSON.parse(xhr.responseText);
+            document.querySelector('.card img').setAttribute('src',`${res.avatar_url}`);
+            document.querySelector('.container h4').innerHTML = `Name : ${res.name}`;
+            document.querySelector('.container p').innerHTML = `Followers ${res.followers}`;
+            document.querySelector('.container h5').innerHTML =`Blog URL :${res.blog} <br> BIO : ${res.bio}`
+        }
+    }
+
+</script>
+</html>
